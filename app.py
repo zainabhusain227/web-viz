@@ -68,8 +68,8 @@ def get_img():
         # reset color as we will want to see the colors of the arrows
         color = None
 
-    elif meshtype == "LNH":
-        mesh = pv.read('data/lnh_final.vtk')
+    elif meshtype == 'LNH':
+        mesh = pyvista.read('data/lnh_final.vtk')
 
     elif meshtype == 'Queen Nefertiti':
         mesh = examples.download_nefertiti()
