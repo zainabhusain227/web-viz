@@ -69,7 +69,9 @@ def get_img():
         color = None
 
     elif meshtype == 'LNH':
+        lnh_thresh=0.9
         mesh = pyvista.read('data/lnh_final.vtk')
+        mesh.flip_z()
 
     elif meshtype == 'Queen Nefertiti':
         mesh = examples.download_nefertiti()
@@ -85,22 +87,22 @@ def get_img():
 
     # create a plotter and add the mesh to it
     pl = pyvista.Plotter(window_size=(600, 600))
-    pl.add_mesh(
-        mesh,
-        style=style,
-        lighting=lighting,
-        pbr=pbr,
-        metallic=0.8,
-        split_sharp_edges=True,
-        show_edges=show_edges,
-        color=color,
-    )
+    # pl.add_mesh(
+    #     mesh,
+    #     style=style,
+    #     lighting=lighting,
+    #     pbr=pbr,
+    #     metallic=0.8,
+    #     split_sharp_edges=True,
+    #     show_edges=show_edges,
+    #     color=color,
+    # )
+    pl.add_mesh(mesh, style=style, lighting=lighting)
     if anti_aliasing:
         pl.enable_anti_aliasing()
     pl.background_color = 'white'
     pl.export_html(filepath)
     return os.path.join('images', filename)
-
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))

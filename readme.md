@@ -4,3 +4,11 @@ Run the following commands to deploy:
 
 docker build .
 
+# Building docker image 
+docker build --tag noahegnatis/flask-docker .
+
+# To push the app to heroku run
+
+heroku container:push web --app bsl-web-viz
+
+heroku container:release web --app bsl-web-viz
