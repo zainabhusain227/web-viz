@@ -5,7 +5,12 @@ Run the following commands to deploy:
 docker build .
 
 # Building docker image 
-docker build --tag noahegnatis/flask-docker .
+docker build --tag IMAGENAME .
+
+# Running docker image to test your changes
+
+docker run IMAGENAME
+
 
 # To push the app to heroku run
 
