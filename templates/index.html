@@ -6,18 +6,23 @@
 
      <fieldset>
 
-       <select style="background-color: #ffffa0" name="meshtype", id="meshtype" onchange="getState(this.value)">
+       <select style="background-color: #2596be" name="meshtype", id="meshtype" onchange="getState(this.value)">
          <option>Select Mesh Type</option>
          <option>Sphere</option>
          <option>Cube</option>
          <option>Bohemian Dome</option>
+
          <option>Cylinder</option>
          <option>Vectors</option>
          <option>LNH</option>
          <option disabled="true" value="divider">-------------</option>
          
        </select>
-
+      
+       <div class="slider">
+         <input type="range" min="0" max="200" value="100" oninput="rangeValue.innerText = this.value">
+         <p id="rangeValue">100</p>
+       </div>
        <div class="item">
          <input type="checkbox" id="show_edges">
          <label for="show_edges">Show Edges</label>
