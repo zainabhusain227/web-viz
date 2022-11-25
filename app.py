@@ -44,8 +44,7 @@ def get_img():
     color = request.args.get('color')
     style = request.args.get('style')
     print(f"'{style}'")
-    op_percent=request.args.get('rangeValue')
-    print(f"'{op_percent}'")
+    op_percent=request.args.get('StreamlineTransparency')
     op= int(op_percent)/100
 
     # bool types

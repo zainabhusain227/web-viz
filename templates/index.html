@@ -27,7 +27,14 @@
          <label for="StreamlineOpValue">StreamlineOpValue</label>
        </div>-->
        <div class="item">
-        <input type="range" min="1" max="100" value="100" id="rangeValue" name="rangeValue">
+        <label for="StreamlineTransparency"> Streamline Transparency:</label>
+        <input type="range" min="0" max="100" value="100" id="StreamlineTransparency" name="StreamlineTransparency" oninput="StreamlineValue.innerText = this.value">
+        <p id="StreamlineValue">100</p>
+      </div>
+      <div class="item">
+        <label for="LNH_Threshold"> LNH Threshold:</label>
+        <input type="range" min="0" max="100" value="100" id="LNH_Threshold" name="LNH_Threshold" oninput="LNHValue.innerText = this.value">
+        <p id="LNHValue">100</p>
       </div>
        <div class="item">
          <input type="checkbox" id="show_edges">
@@ -81,7 +88,8 @@
                color:          $('#colorpicker').val(),
                style:          $(".style:checked").val(),
                anti_aliasing: ($("#anti_aliasing").is(":checked")),
-               rangeValue:          $('#rangeValue').val(),
+               StreamlineTransparency: $('#StreamlineTransparency').val(),
+               LNH_Transparency: $('#LNH_Transparency').val(),
 
            },
            success: function(response) {
