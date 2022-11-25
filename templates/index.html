@@ -19,10 +19,16 @@
          
        </select>
       
+       <!--<div class="slider">
+         <input type="range" min="0" max="100" value="50" id="LNHThreshValue" oninput="rangeValue.innerText = this.value">
+         <label for="LNHThreshValue">LNHThreshValue</label>
        <div class="slider">
-         <input type="range" min="0" max="200" value="100" oninput="rangeValue.innerText = this.value">
-         <p id="rangeValue">100</p>
-       </div>
+         <input type="range" min="0" max="100" value="100" id="StreamlineOpValue" oninput="rangeValue.innerText = this.value">
+         <label for="StreamlineOpValue">StreamlineOpValue</label>
+       </div>-->
+       <div class="item">
+        <input type="range" min="1" max="100" value="100" id="rangeValue" name="rangeValue">
+      </div>
        <div class="item">
          <input type="checkbox" id="show_edges">
          <label for="show_edges">Show Edges</label>
@@ -61,6 +67,7 @@
      
    </body>
   <script>
+
     $(document).ready(function() {
        $('#retrieve').click(function(){
            $.ajax({
@@ -74,6 +81,7 @@
                color:          $('#colorpicker').val(),
                style:          $(".style:checked").val(),
                anti_aliasing: ($("#anti_aliasing").is(":checked")),
+               rangeValue:          $('#rangeValue').val(),
 
            },
            success: function(response) {

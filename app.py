@@ -15,6 +15,7 @@ import numpy as np
 import pyvista
 from pyvista import examples
 
+
 static_image_path = os.path.join('static', 'images')
 if not os.path.isdir(static_image_path):
     os.makedirs(static_image_path)
@@ -43,6 +44,9 @@ def get_img():
     color = request.args.get('color')
     style = request.args.get('style')
     print(f"'{style}'")
+    op_percent=request.args.get('rangeValue')
+    print(f"'{op_percent}'")
+    op= int(op_percent)/100
 
     # bool types
     show_edges = request.args.get('show_edges') == 'true'
@@ -69,14 +73,20 @@ def get_img():
         color = None
 
     elif meshtype == 'LNH':
+        #print(request.args.get('show_edges'))
         ####this is the slider parameter to adjust lnh thresholding (values 0 to 1)#####
-        lnh_thresh= 0.7
+        #lnh_thresh_percent= request.form["LNHThreshValue"]
+        lnh_thresh= 0.7 #lnh_thresh_percent/100
         ####this is the slider parameter to adjust streamline opacity (values 0 to 1)#####
-        streamline_op= 1
+        #streamline_op_percent= request.args.get('rangeValue')
+        #int_stream= int(streamline_op_percent)
+        streamline_op= 1 #streamline_op_percent/100
+
         lnh_data = pyvista.read('data/lnh_final.vtk')
-        lnh_data.flip_z()
+        lnh_data.flip_z(inplace=True)
         streamline_data= pyvista.read('data/streamline_final.vtk')
-        streamline_data.flip_z()
+        streamline_data.flip_z(inplace=True)
+        mesh=streamline_data
 
 
     elif meshtype == 'Queen Nefertiti':
@@ -103,7 +113,8 @@ def get_img():
     #     show_edges=show_edges,
     #     color=color,
     # )
-
+    p.add_mesh(mesh, style=style, lighting=lighting, opacity=op)
+    '''
     lnh_data.set_active_scalars('LNH')
     #lnh ranges from -1 to 1, we must calculate the negative lnh threshold as well (is if threshold is 0.5 we will plot values above 0.5 and below -0.5)
     neg_lnh_thresh= float (0) - float(lnh_thresh)
@@ -117,7 +128,7 @@ def get_img():
 
     #plot the 2 meshes
     p.add_mesh(pos_lnh, name="lnh_pos", color='red', opacity=1)
-    p.add_mesh(neg_lnh, name="lnh_neg", color='blue',opacity=1)
+    p.add_mesh(neg_lnh, name="lnh_neg", color='blue',opacity=1) '''
 
     if anti_aliasing:
         p.enable_anti_aliasing()
