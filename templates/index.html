@@ -8,12 +8,6 @@
 
        <select style="background-color: #2596be" name="meshtype", id="meshtype" onchange="getState(this.value)">
          <option>Select Mesh Type</option>
-         <option>Sphere</option>
-         <option>Cube</option>
-         <option>Bohemian Dome</option>
-
-         <option>Cylinder</option>
-         <option>Vectors</option>
          <option>LNH</option>
          <option disabled="true" value="divider">-------------</option>
          
@@ -33,8 +27,8 @@
       </div>
       <div class="item">
         <label for="LNH_Threshold"> LNH Threshold:</label>
-        <input type="range" min="0" max="100" value="100" id="LNH_Threshold" name="LNH_Threshold" oninput="LNHValue.innerText = this.value">
-        <p id="LNHValue">100</p>
+        <input type="range" min="0" max="100" value="0" id="LNH_Threshold" name="LNH_Threshold" oninput="LNHValue.innerText = this.value">
+        <p id="LNHValue">0</p>
       </div>
        <div class="item">
          <input type="checkbox" id="show_edges">

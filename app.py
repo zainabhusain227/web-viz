@@ -56,25 +56,7 @@ def get_img():
     pbr = request.args.get('pbr') == 'true'
     anti_aliasing = request.args.get('anti_aliasing') == 'true'
 
-    if meshtype == 'Sphere':
-        mesh = pyvista.Sphere()
-    elif meshtype == 'Cube':
-        mesh = pyvista.Cube()
-    elif meshtype == 'Bohemian Dome':
-        mesh = pyvista.ParametricBohemianDome()
-    elif meshtype == 'Cylinder':
-        mesh = pyvista.Cylinder()
-    elif meshtype == 'Vectors':
-        n_points = 20
-        points = np.random.random((n_points, 3))
-        poly = pyvista.PolyData(points)
-        poly['direction'] = np.random.random((n_points, 3))
-        poly['direction'] -= poly['direction'].mean(axis=0)  # normalize
-        mesh = poly.glyph(geom=pyvista.Arrow(), orient=True, scale=True, factor=0.2)
-        # reset color as we will want to see the colors of the arrows
-        color = None
-
-    elif meshtype == 'LNH':
+    if meshtype == 'LNH':
         #print(request.args.get('show_edges'))
         ####this is the slider parameter to adjust lnh thresholding (values 0 to 1)#####
         #lnh_thresh_percent= request.form["LNHThreshValue"]
@@ -89,12 +71,6 @@ def get_img():
         streamline_data= pyvista.read('data/streamline_final.vtk')
         streamline_data.flip_z(inplace=True)
         mesh=streamline_data
-
-
-    elif meshtype == 'Queen Nefertiti':
-        mesh = examples.download_nefertiti()
-    elif meshtype == 'Lidar':
-        mesh = examples.download_lidar()
     else:
         # invalid entry
         raise ValueError('Invalid Option')
@@ -105,17 +81,6 @@ def get_img():
 
     # create a plotter and add the mesh to it
     p = pyvista.Plotter(window_size=(600, 600))
-    # pl.add_mesh(
-    #     mesh,
-    #     style=style,
-    #     lighting=lighting,
-    #     pbr=pbr,
-    #     metallic=0.8,
-    #     split_sharp_edges=True,
-    #     show_edges=show_edges,
-    #     color=color,
-    # )
-    #p.add_mesh(mesh, style=style, lighting=lighting, opacity=op)
     
     lnh_data.set_active_scalars('LNH')
     #lnh ranges from -1 to 1, we must calculate the negative lnh threshold as well (is if threshold is 0.5 we will plot values above 0.5 and below -0.5)
