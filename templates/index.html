@@ -8,12 +8,6 @@
 
        <select style="background-color: #2596be" name="meshtype", id="meshtype" onchange="getState(this.value)">
          <option>Select Mesh Type</option>
-         <option>Sphere</option>
-         <option>Cube</option>
-         <option>Bohemian Dome</option>
-
-         <option>Cylinder</option>
-         <option>Vectors</option>
          <option>LNH</option>
          <option disabled="true" value="divider">-------------</option>
          
@@ -27,7 +21,14 @@
          <label for="StreamlineOpValue">StreamlineOpValue</label>
        </div>-->
        <div class="item">
-        <input type="range" min="1" max="100" value="100" id="rangeValue" name="rangeValue">
+        <label for="StreamlineTransparency"> Streamline Transparency:</label>
+        <input type="range" min="0" max="100" value="100" id="StreamlineTransparency" name="StreamlineTransparency" oninput="StreamlineValue.innerText = this.value">
+        <p id="StreamlineValue">100</p>
+      </div>
+      <div class="item">
+        <label for="LNH_Threshold"> LNH Threshold:</label>
+        <input type="range" min="0" max="100" value="0" id="LNH_Threshold" name="LNH_Threshold" oninput="LNHValue.innerText = this.value">
+        <p id="LNHValue">0</p>
       </div>
        <div class="item">
          <input type="checkbox" id="show_edges">
@@ -81,7 +82,8 @@
                color:          $('#colorpicker').val(),
                style:          $(".style:checked").val(),
                anti_aliasing: ($("#anti_aliasing").is(":checked")),
-               rangeValue:          $('#rangeValue').val(),
+               StreamlineTransparency: $('#StreamlineTransparency').val(),
+               LNH_Threshold: $('#LNH_Threshold').val(),
 
            },
            success: function(response) {
