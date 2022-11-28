@@ -1,70 +1,54 @@
 <html>
   <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      
+      /* Create two equal columns that floats next to each other */
+      .column {
+        float: left;
+        width: 50%;
+        padding: 10px;
+      }
+      
+      /* Clear floats after the columns */
+      .row:after {
+        content: "";
+        display: table;
+        clear: both;
+      }
+      </style>
   </head>
    <body>
 
-     <fieldset>
+    <div class="row">
+      <div class="column">
+        <fieldset>
 
-       <select style="background-color: #2596be" name="meshtype", id="meshtype" onchange="getState(this.value)">
-         <option>Select Mesh Type</option>
-         <option>LNH</option>
-         <option disabled="true" value="divider">-------------</option>
-         
-       </select>
-      
-       <!--<div class="slider">
-         <input type="range" min="0" max="100" value="50" id="LNHThreshValue" oninput="rangeValue.innerText = this.value">
-         <label for="LNHThreshValue">LNHThreshValue</label>
-       <div class="slider">
-         <input type="range" min="0" max="100" value="100" id="StreamlineOpValue" oninput="rangeValue.innerText = this.value">
-         <label for="StreamlineOpValue">StreamlineOpValue</label>
-       </div>-->
-       <div class="item">
-        <label for="StreamlineTransparency"> Streamline Transparency:</label>
-        <input type="range" min="0" max="100" value="100" id="StreamlineTransparency" name="StreamlineTransparency" oninput="StreamlineValue.innerText = this.value">
-        <p id="StreamlineValue">100</p>
-      </div>
-      <div class="item">
+        <input type="checkbox" id="Streamlines">
+        <label for="Streamlines">Streamlines</label>
+
+        <br> 
+
         <label for="LNH_Threshold"> LNH Threshold:</label>
         <input type="range" min="0" max="100" value="0" id="LNH_Threshold" name="LNH_Threshold" oninput="LNHValue.innerText = this.value">
         <p id="LNHValue">0</p>
+
+        <br>
+        
+        <button type='button' id ='retrieve'>Plot</button>
+
+        </fieldset>
       </div>
-       <div class="item">
-         <input type="checkbox" id="show_edges">
-         <label for="show_edges">Show Edges</label>
-       </div>
-       <div class="item">
-         <input type="checkbox" id="lighting" checked>
-         <label for="lighting">Lighting</label>
-       </div>
-       <div class="item">
-         <input type="checkbox" id="pbr" checked>
-         <label for="pbr">Physically Based Rendering</label>
-       </div>
-       <div class="item">
-         <input type="checkbox" id="anti_aliasing" checked>
-         <label for="anti_aliasing">Anti-Aliasing</label>
-       </div>
-       <label for="colorpicker">Color Picker:</label>
-       <input type="color" id="colorpicker" value="#a4b2ba">
 
-       <div>
-         Style:
-         <input type="radio" class="style" name="style" value="points" /> Points
-         <input type="radio" class="style" name="style" value="wireframe" /> Wireframe
-         <input type="radio" class="style" name="style" value="surface" checked/> Surface
-
-       </div>
-
-       <br>
-       <button type='button' id ='retrieve'>Plot</button>
-
-     </fieldset>
-
-     <iframe src="" height="600" width="600" title="PyVista" id="myimg" frameBorder="0" allowtransparency=yes scrolling=no>
-       <p>Your browser does not support iframes.</p>
-     </iframe>
+      <div class="column">
+        <iframe src="" height="600" width="600" title="PyVista" id="myimg" frameBorder="0" allowtransparency=yes scrolling=no>
+         <p>Your browser does not support iframes.</p>
+        </iframe>
+      </div>
+    </div>
      
    </body>
   <script>
@@ -75,14 +59,7 @@
            url: "{{ url_for ('get_img') }}",
            type: "GET",
            data: { 
-               meshtype:       $('#meshtype option:selected').val(),
-               show_edges:    ($("#show_edges").is(":checked")),
-               lighting:      ($("#lighting").is(":checked")),
-               pbr:           ($("#pbr").is(":checked")),
-               color:          $('#colorpicker').val(),
-               style:          $(".style:checked").val(),
-               anti_aliasing: ($("#anti_aliasing").is(":checked")),
-               StreamlineTransparency: $('#StreamlineTransparency').val(),
+               Streamlines:  ($("#Streamlines").is(":checked")),
                LNH_Threshold: $('#LNH_Threshold').val(),
 
            },
