@@ -6,12 +6,12 @@
 
      <fieldset>
 
-       <select style="background-color: #2596be" name="meshtype", id="meshtype" onchange="getState(this.value)">
+       <!--<select style="background-color: #2596be" name="meshtype", id="meshtype" onchange="getState(this.value)">
          <option>Select Mesh Type</option>
          <option>LNH</option>
          <option disabled="true" value="divider">-------------</option>
          
-       </select>
+       </select>-->
       
        <!--<div class="slider">
          <input type="range" min="0" max="100" value="50" id="LNHThreshValue" oninput="rangeValue.innerText = this.value">
@@ -27,10 +27,10 @@
       </div>
       <div class="item">
         <label for="LNH_Threshold"> LNH Threshold:</label>
-        <input type="range" min="0" max="100" value="0" id="LNH_Threshold" name="LNH_Threshold" oninput="LNHValue.innerText = this.value">
+        <input type="range" min="0" max="99" value="0" id="LNH_Threshold" name="LNH_Threshold" oninput="LNHValue.innerText = this.value">
         <p id="LNHValue">0</p>
       </div>
-       <div class="item">
+       <!--<div class="item">
          <input type="checkbox" id="show_edges">
          <label for="show_edges">Show Edges</label>
        </div>
@@ -48,14 +48,14 @@
        </div>
        <label for="colorpicker">Color Picker:</label>
        <input type="color" id="colorpicker" value="#a4b2ba">
-
        <div>
          Style:
          <input type="radio" class="style" name="style" value="points" /> Points
          <input type="radio" class="style" name="style" value="wireframe" /> Wireframe
          <input type="radio" class="style" name="style" value="surface" checked/> Surface
 
-       </div>
+       </div>-->
+
 
        <br>
        <button type='button' id ='retrieve'>Plot</button>
@@ -75,13 +75,13 @@
            url: "{{ url_for ('get_img') }}",
            type: "GET",
            data: { 
-               meshtype:       $('#meshtype option:selected').val(),
+               /*meshtype:       $('#meshtype option:selected').val(),
                show_edges:    ($("#show_edges").is(":checked")),
                lighting:      ($("#lighting").is(":checked")),
                pbr:           ($("#pbr").is(":checked")),
                color:          $('#colorpicker').val(),
-               style:          $(".style:checked").val(),
-               anti_aliasing: ($("#anti_aliasing").is(":checked")),
+               style:          $(".style:checked").val(),*/
+               //anti_aliasing: ($("#anti_aliasing").is(":checked")),
                StreamlineTransparency: $('#StreamlineTransparency').val(),
                LNH_Threshold: $('#LNH_Threshold').val(),
 
