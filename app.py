@@ -42,11 +42,12 @@ def get_img():
     # get the user selected mesh option
     meshtype = 'LNH'        #request.args.get('meshtype')
     #color = request.args.get('color')
-    style = request.args.get('style')
+    #style = request.args.get('style')
     #print(f"'{style}'")
-    op_percent=request.args.get('StreamlineTransparency')
-    op= int(op_percent)/100
+    #op_percent=request.args.get('StreamlineTransparency')
+    #op= int(op_percent)/100
 
+    Streamline_bool = request.args.get('Streamlines') == 'true'
     thresh_percent=request.args.get('LNH_Threshold')
     lnh_thresh= int(thresh_percent)/100
 
@@ -84,15 +85,15 @@ def get_img():
     neg_lnh= lnh_data.threshold(neg_lnh_thresh,invert=True)
 
     #plot the streamlines mesh
-    p.add_mesh(streamline_data, name="Streamlines",opacity=op)
+    if Streamline_bool== True:
+        p.add_mesh(streamline_data, name="Streamlines",opacity=1)
 
-    #plot the 2 meshes
-    p.add_mesh(pos_lnh, name="lnh_pos", color='red', opacity=1)
-    p.add_mesh(neg_lnh, name="lnh_neg", color='blue',opacity=1) 
+    if (lnh_thresh<1):  #lnh will only be plotted when the threshold is below 1, otherwise there is a risk of error from attempting to plot empty mesh
+        #plot the 2 meshes
+        p.add_mesh(pos_lnh, name="lnh_pos", color='red', opacity=1)
+        p.add_mesh(neg_lnh, name="lnh_neg", color='blue',opacity=1) 
 
-    #if anti_aliasing:
-    #    p.enable_anti_aliasing()
-    p.background_color = 'white'
+    p.background_color = 'gray'
     p.export_html(filepath)
     return os.path.join('images', filename)
 
