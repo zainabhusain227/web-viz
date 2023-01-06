@@ -1,3 +1,8 @@
+# Use buildx to enable use across multiple computer architectures
+# FROM docker
+# COPY --from=docker/buildx-bin:latest /buildx /usr/libexec/docker/cli-plugins/docker-buildx
+# RUN docker buildx version
+
 # start by pulling the python image
 FROM ubuntu:latest
 
