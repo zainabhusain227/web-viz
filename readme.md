@@ -1,19 +1,15 @@
-This is a repoisity that deploys a pyvista flask application to a heroku web app.
-
-Run the following commands to deploy:
-
-docker build .
-
-# Building docker image 
-docker build --tag IMAGENAME .
-
-# Running docker image to test your changes
-
-docker run IMAGENAME
+## SB3C Abstract Entry: Remote Viz
+This git repository showcases 2 of the threee different methods used for sharing LNH visulisations. You can look throuhg the different branches of this repo to see the different ways that they are implemented (jupyterNotebook, and flaskWebApp)
 
 
-# To push the app to heroku run
+# Containerized Jupyter Notebooks
 
-heroku container:push web --app bsl-web-viz
+![Alt Text](/figures/visulization_architecture_diagrams-docker_jupyter_architecture.drawio.png)
 
-heroku container:release web --app bsl-web-viz
+# Flask WebApp
+
+![Alt Text](/figures/flask_webpage_architecture.drawio.png)
+
+# Google-Colab
+
+![Alt Text](/figures/google_colab_architecture.drawio.png)
