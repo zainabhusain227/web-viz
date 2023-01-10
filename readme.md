@@ -15,7 +15,7 @@ Clone this branch of the source repository using the following command:
 
 ``` git clone https://github.com/Biomedical-Simulation-Lab/web-viz.git -b flaskWebApp```
 
-### Step 2. Building the Container
+### Step 2. Building the Image
 Navigate into the source directory and verify that the Dockerfile is present and run the following command.
 
 ```docker build . --tag flask_viz_app```
