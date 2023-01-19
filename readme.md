@@ -4,7 +4,7 @@ This git repository showcases 2 of the threee different methods used for sharing
 
 # Containerized Jupyter Notebooks
 
-![Alt Text](/figures/visulization_architecture_diagrams-docker_jupyter_architecture.drawio.png)
+![Alt Text](/figures/docker_jupyter_architecture.drawio.png)
 
 # Flask WebApp
 
