@@ -1,5 +1,5 @@
 ## SB3C Abstract Entry: Remote Viz
-This git repository showcases 2 of the threee different methods used for sharing LNH visulisations. You can look throuhg the different branches of this repo to see the different ways that they are implemented (jupyterNotebook, and flaskWebApp). To view the Google Colab Notebook please use the following link https://colab.research.google.com/drive/1XFVJ-pngCYfTDScSpWcoxfOYxklVZDAt?usp=sharing.
+This git repository showcases 2 of the three different methods used for sharing LNH visulisations. You can look throuhg the different branches of this repo to see the different ways that they are implemented (jupyterNotebook, and flaskWebApp). To view the Google Colab Notebook please use the following link https://colab.research.google.com/drive/1XFVJ-pngCYfTDScSpWcoxfOYxklVZDAt?usp=sharing.
 
 
 # Containerized Jupyter Notebooks
